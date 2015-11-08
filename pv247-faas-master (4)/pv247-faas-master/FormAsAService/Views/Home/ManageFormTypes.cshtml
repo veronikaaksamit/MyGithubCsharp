@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "ManageFormTypes";
+}
+
+<h2>Add FormType</h2>
+
+    <textarea id="json" rows="10" cols="500">
+{
+    "Name" : "Test form.",
+    "ElementTypes" : [
+        // Place desired ElementTypes here
+    ]
+}
+    </textarea>
+    <br>
+    <button onclick="sendJSON();">Send</button>
+<br>
+<pre id="result">
+--- no result yet ---  
+</pre>
+
+<h2>Possible ElementTypes</h2>
+
+<dt>Textbox</dt>
+<dd>
+    <pre>
+        {
+            "ElementHtmlType": 1,
+            "Name": "My Text Box"
+            "DefaultValue": "default"
+        }
+    </pre>
+</dd>
+
+<script>
+    function sendJSON()
+    {
+        var data = $("#json").val();
+
+        try {
+            $.parseJSON(data)
+        } catch (err) {
+            alert("Invalid JSON! " + err);
+            return;
+        };
+
+        $.ajax({
+            url: "/api/FormTypes",
+            method: "post",
+            data: data,
+            contentType: "application/json"
+        }).done(function( result ) {
+            $("#result").text(JSON.stringify(result));
+        });
+    }
+</script>
