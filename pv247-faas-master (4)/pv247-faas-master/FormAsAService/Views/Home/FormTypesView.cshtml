@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Model.FormType>
+
+@{
+    ViewBag.Title = "FormTypesView";
+}
+
+<h3>Form Types</h3>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <table class="table">
+        <tr>
+            <th style="border:none;font-size:larger;">
+                Type of form
+            </th>
+            <th style="border:none;font-size:larger;">
+                <a class="btn btn-default" href="~/Home/ManageFormTypes">+ Add type of form</a>
+            </th>
+        </tr>
+        @foreach (Model.FormType item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>     
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.link) TREBA PRIDAT DO FormType objektu string link na vyplnanie dotaznika ktory sa tu bude zobrazovat
+                </td>*@
+                <td style="margin-left:20px;">
+                    @Html.ActionLink("Statistics", "Statistics", new { id = item.Id }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@

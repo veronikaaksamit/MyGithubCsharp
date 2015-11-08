@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Form as a service</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://fb.me/react-0.14.0.js"></script>
+    <script src="https://fb.me/react-dom-0.14.0.js"></script>
+</head>
+<body>
+    
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Form as a Service", "Index", "Home", new { area = "" }, new { @class = "navbar-brand",style = "padding-left:100px" })
+            </div>
+            <form class=" navbar-right" role="search" style="padding-right:100px">
+                @Html.ActionLink("Log in", "LogIn", "Account", new { area = "" }, new { @class = "navbar-brand", style = "padding-right:100px;float: right;" })
+                </form>
+            <div class="navbar-collapse collapse">
+                
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container body-content" style="padding-left:100px;padding-right:100px;">
+        <div id="reactContent"></div>
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Form as a service</p>
+        </footer>
+    </div>
+</body>
+</html>
